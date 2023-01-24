@@ -53,7 +53,29 @@ function Form(props) {
             const newObj = Object.assign({}, user, {[field]: e.target.value})
             setUser(newObj)
         }
-    }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let errors = validate();
+
+        console.log(user);
+
+        if (errors.length) {
+            setErrors(errors);
+        };
+    };
+
+    const showErrors = () => {
+        if (!errors.length) return null;
+
+        return (
+            <ul>
+                {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>
+        )
+    };
+
     return (
         <div>
             {/* {showErrors()} */}
